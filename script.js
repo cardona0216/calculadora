@@ -1,17 +1,61 @@
+let operacion = '';
 
-//esto agraga a la pantalla el valor del boton de la calculadora
 function agregar(valor) {
-    document.getElementById('pantalla').value += valor 
+    const pantalla = document.getElementById('pantalla');
+    if (operacion === 'resultado') {
+        pantalla.value = ''; // Borra la pantalla si ya hay un resultado
+        operacion = '';
+    }
+    pantalla.value += valor;
 }
 
-//esat accion borra la pantalla
 function borrar() {
-    document.getElementById('pantalla').value = ''
+    const pantalla = document.getElementById('pantalla');
+    pantalla.value = '';
 }
-
 
 function calcular() {
-    const valorPantalla = document.getElementById('pantalla').value;
-    const resultado = eval(valorPantalla);
-    document.getElementById('pantalla').value = resultado
+    const pantalla = document.getElementById('pantalla');
+    try {
+        let resultado = eval(pantalla.value);
+        pantalla.value = resultado;
+        operacion = 'resultado'; // Marca que se ha obtenido un resultado
+    } catch (error) {
+        pantalla.value = 'Error';
+    }
 }
+
+// Manejo de eventos del teclado
+document.addEventListener('keydown', function(event) {
+    const teclaPresionada = event.key;
+
+    switch (teclaPresionada) {
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '0':
+        case '+':
+        case '-':
+        case '**':
+        case '*':
+        case '/':
+        case '.':
+            agregar(teclaPresionada);
+            break;
+        case 'Enter':
+            calcular();
+            break;
+        case 'c':
+        case 'C':
+            borrar();
+            break;
+        default:
+            break;
+    }
+});

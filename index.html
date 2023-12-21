@@ -13,7 +13,7 @@
     <h1>Calculadora Curso Javascript</h1>
     <h2>Por walter cardona</h2>
     <div class="calculadora">
-        <input type="text" id="pantalla" readonly>
+        <input type="text" id="pantalla" readonly placeholder="0">
         <br>
         <input type="button" value="1" onclick="agregar('1')" >
         <input type="button" value="2" onclick="agregar('2')" >
@@ -34,6 +34,7 @@
         <input type="button" value="." onclick="agregar('.')" >
         <input type="button" value="/" onclick="agregar('/')" >
         <input type="button" value="=" onclick="calcular()" >
+        <input type="button" value="**" onclick="agregar('**')" >
         <br>
         <input type="button" value="C" onclick="borrar('C')">
     </div>
